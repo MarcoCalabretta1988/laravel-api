@@ -6,9 +6,12 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Mail\PublishedProjectMail;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
@@ -174,6 +177,14 @@ class ProjectController extends Controller
         $msg =  $project->is_published ? 'successfully published' : 'Drafts';
         $type =  $project->is_published ? 'success' : 'info';
         $project->save();
+
+        if ($project->is_published) {
+            $email = new PublishedProjectMail($project);
+            $user_email = Auth::user()->email;
+            Mail::to($user_email)->send($email);
+        }
+
+
         return redirect()->back()->with('type', $type)->with('msg', "Project is $msg.");
     }
 }
