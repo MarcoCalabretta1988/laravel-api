@@ -68,8 +68,8 @@
 
               
             </td>
-            <td>{{$project->created_at}}</td>
-            <td>{{$project->updated_at}}</td>
+            <td>{{$project->getCreateAt()}}</td>
+            <td>{{$project->getUpdateAt()}}</td>
             <td>
               <div class="button-box d-flex justify-content-end">
                   <a href="{{route('admin.projects.show',$project->id)}}" class="btn btn-sm btn-primary"><i class="fa-sharp fa-solid fa-eye"></i></a>

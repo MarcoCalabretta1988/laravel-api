@@ -16,9 +16,9 @@
     <div class="my-2"><strong>Description: </strong></div>
     <p>{{$project->description}}</p>
     <hr>
-    <strong>Create at: </strong> <time>{{ $project->created_at}}</time>
+    <strong>Create at: </strong> <time>{{ $project->getCreateAt()}}</time>
     <div class="my-2">
-      <strong >Last update: </strong> <time>{{ $project->updated_at}}</time>
+      <strong >Last update: </strong> <time>{{ $project->getUpdateAt()}}</time>
     </div>
     <div>
       <strong>Type: </strong>{{$project->type?->label}}

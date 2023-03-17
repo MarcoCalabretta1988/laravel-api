@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -58,5 +59,10 @@ class ProjectController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getUpdateAt()
+    {
+        return Carbon::create($this->updated_at)->format('d-m-Y');
     }
 }
